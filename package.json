@@ -1,0 +1,13 @@
+
+{
+  "name"         : "anime-scrape",
+  "version"      : "0.0.1",
+  "description"  : "Scrape sites de anime.",
+  "main"         : "web.js",
+  "author"       : "Mjsf12",
+  "dependencies" : {
+    "express"    : "latest",
+    "request"    : "latest",
+    "cheerio"    : "latest"
+  }
+}
