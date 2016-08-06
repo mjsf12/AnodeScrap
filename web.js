@@ -45,8 +45,17 @@ request(url, function(error, response, html){
                           json.image = image;
                               })
 
-        console.log(req);
-
+          $('.l-fullhd').filter(function(){
+            var data = $(this);
+            var epi = data.children('a').attr('href');
+            epi = epi.split('/');
+            console.log(epi.pop());
+            var link = data.children().children();
+            link.each(function(){
+              var int = $(this).children();
+              console.log(int.text()+ " : "+int.attr('href'));
+            })
+          })
         res.render('index',json);
       }
   })
