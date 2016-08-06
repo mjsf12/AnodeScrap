@@ -7,6 +7,7 @@
   "author"       : "Mjsf12",
   "dependencies" : {
     "express"    : "latest",
+    "body-parser": "latest",
     "request"    : "latest",
     "cheerio"    : "latest",
     "jade"       : "latest"

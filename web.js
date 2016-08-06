@@ -1,12 +1,15 @@
-var express = require('express');
-var request = require('request');
-var cheerio = require('cheerio');
-var app     = express();
-var jade = require('jade');
+var express    = require('express');
+var bodyParser = require("body-parser");
+var request    = require('request');
+var cheerio    = require('cheerio');
+var app        = express();
+var jade       = require('jade');
 
 app.set('view engine', 'jade');
-app.get('/', function(req, res){
-url = 'http://www.animakai.tv/anime/re-zero-kara-hajimeru-isekai-seikatsu';
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.post('/f', function(req, res){
+url = req.body.site;
 
 request(url, function(error, response, html){
 
@@ -36,18 +39,23 @@ request(url, function(error, response, html){
                           release = release.trim();
                           json.release = release;
                               })
-          $('.thumb').filter(function(){
+          $('.img-responsive').filter(function(){
                           var data = $(this);
-                          image = data.children().attr('src');
+                          image = data.attr('src');
                           json.image = image;
                               })
 
-        console.log(json);
+        console.log(req);
 
-        res.render('index',json)
+        res.render('index',json);
       }
   })
 })
+
+app.get('/',function(req,res){
+res.render('nindex');
+})
+
 
 app.listen('8081')
 
