@@ -8,6 +8,7 @@ var jade       = require('jade');
 app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static('public'));
 app.post('/f', function(req, res){
 url = req.body.site;
 
@@ -17,9 +18,8 @@ request(url, function(error, response, html){
       if(!error){
           var $ = cheerio.load(html);
           var title, release, info;
-          var links = new Array;
           var flag = 0;
-          var json = { title : "", release : "", info : "", image : "", link : links};
+          var json = { title : "", release : "", info : "", image : "", link : null};
           function comparador(list1,list2){
             var flist = new Array;
             for (var i= 0; i < list1.length; i++){
@@ -78,7 +78,7 @@ request(url, function(error, response, html){
                               })
 
         var aux = getEpisodios();
-        json.link = json.link.concat(aux);
+        json.link = aux;
         console.log(json.link);
         res.render('index',json);
       }

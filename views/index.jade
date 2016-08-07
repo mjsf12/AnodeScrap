@@ -2,8 +2,24 @@ doctype html5
 html(lang = "pt_br")
   head
     title= title
+    include jsandcss.jade
   body
     h1= title
     img(src= image)
     h4= info
     h4= release
+    h3 Episodios
+
+    div(class="mdl-grid")
+      each val in link
+        div(class="mdl-cell mdl-cell--1-col")
+          table(class="mdl-data-table mdl-js-data-table mdl-shadow--2dp ")
+            thead
+              tr
+                th= val[0]
+            tbody
+                each val2 in val
+                  if val2.nome
+                    tr
+                      td
+                        a(href= val2.link)= val2.nome
