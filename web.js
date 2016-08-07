@@ -15,11 +15,43 @@ request(url, function(error, response, html){
 
 
       if(!error){
-
           var $ = cheerio.load(html);
-
           var title, release, info;
-          var json = { title : "", release : "", info : "", image : ""};
+          var links = new Array;
+          var flag = 0;
+          var json = { title : "", release : "", info : "", image : "", link : links};
+          function comparador(list1,list2){
+            var flist = new Array;
+            for (var i= 0; i < list1.length; i++){
+                if (list1[i][1]) flist.push(list1[i]);
+                else flist.push(list2[i]);
+              }
+          return (flist);
+          }
+
+          function getEpisodios(q='.l-fullhd') {
+            var final = new Array;
+            $(q).filter(function(){
+              var ar = new Array;
+              var data = $(this);
+              var epi = data.children('a').attr('href');
+              epi = epi.split('/');
+              ar.push(epi.pop() + " : " + q)
+              var link = data.children().children();
+              link.each(function(){
+                var int = $(this).children();
+                var dic = {nome : int.text() , link : int.attr('href').trim()};
+                ar.push(dic);
+              })
+              if (ar.length == 1) flag = 1;
+              final.push(ar);
+            })
+            if (flag == 1 && q == ".l-fullhd"){
+              var aux = getEpisodios(".l-hd");
+              final = comparador(final, aux);
+            }
+            return(final);
+          }
 
           $('#galeria-animes').filter(function(){
                         var data = $(this);
@@ -45,17 +77,9 @@ request(url, function(error, response, html){
                           json.image = image;
                               })
 
-          $('.l-fullhd').filter(function(){
-            var data = $(this);
-            var epi = data.children('a').attr('href');
-            epi = epi.split('/');
-            console.log(epi.pop());
-            var link = data.children().children();
-            link.each(function(){
-              var int = $(this).children();
-              console.log(int.text()+ " : "+int.attr('href'));
-            })
-          })
+        var aux = getEpisodios();
+        json.link = json.link.concat(aux);
+        console.log(json.link);
         res.render('index',json);
       }
   })
