@@ -1,0 +1,33 @@
+doctype html5
+html(lang = "pt_br")
+  head
+    title= title
+    include jsandcss.jade
+  body
+    include header.jade
+    br
+    br
+    main(class= "mdl-layout__content")
+      div(class= "mdl-grid page-content")
+        div(class= "mdl-cell mdl-cell--12-col")
+          h2(style= "text-align: center;")= title
+        div(class= "mdl-cell mdl-cell--4-col")
+          img(src= image)
+        div(class= "mdl-cell mdl-cell--8-col")
+          h6= info
+          h6= release
+        h3 Episodios
+
+      div(class="mdl-grid")
+        each val in link
+          div(class="mdl-cell mdl-cell--2-col")
+            table(class="mdl-data-table mdl-js-data-table mdl-shadow--2dp ")
+              thead
+                tr
+                  th= val[0]
+              tbody
+                  each val2 in val
+                    if val2.nome
+                      tr
+                        td
+                          a(href= val2.link)= val2.nome
