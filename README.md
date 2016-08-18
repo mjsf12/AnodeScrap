@@ -1,2 +1,2 @@
 # AnodeScrap
-Server exprex + jade + node para fazer scrap em sites de anime.
+Server express + jade + node para fazer scrap em sites de anime.
