@@ -26,7 +26,9 @@ animakai.prototype.getEpisodios = function ($,q='.l-fullhd') {
       var link = data.children().children();
       link.each(function(){
         var int = $(this).children();
-        var dic = {nome : int.text() , link : int.attr('href').trim()};
+        var linkk = int.attr('href').trim();
+        linkk = linkk.split("s=")[1];
+        var dic = {nome : int.text() , link : linkk};
         ar.push(dic);
       })
       if (ar.length == 1) flag = 1;

@@ -94,7 +94,6 @@ request(this.url, function(error, response, html){
             json.info = animestelecine.getinfo($);
             json.image = animestelecine.getimage($);
             json.link = animestelecine.getEpisodios($);
-            console.log(json.link);
           }
       else {
         console.log("erro ao entar no site");
