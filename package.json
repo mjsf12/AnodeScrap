@@ -6,10 +6,7 @@
   "main"         : "web.js",
   "author"       : "Mjsf12",
   "license"      : "GPL-3",
-  "repository": {
-  "type": "git",
-  "url": "https://github.com/mjsf12/AnodeScrap.git"
-  },
+  "private"      : true,
   "dependencies" : {
     "express"    : "latest",
     "body-parser": "latest",
