@@ -1,15 +1,20 @@
 
 {
   "name"         : "anime-scrape",
-  "version"      : "0.0.1",
+  "version"      : "0.2",
   "description"  : "Scrape sites de anime.",
   "main"         : "web.js",
   "author"       : "Mjsf12",
+  "license"      : "GPL-3",
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/mjsf12/AnodeScrap.git"
+  },
   "dependencies" : {
     "express"    : "latest",
     "body-parser": "latest",
     "request"    : "latest",
     "cheerio"    : "latest",
-    "jade"       : "latest"
+    "pug"        : "latest"
   }
 }
